@@ -1,11 +1,16 @@
 import { setValue, clickOn, clickOff } from './game.js';
+import { CARD_URLS } from './cards.js';
 
 const resources = [
-    '../resources/cb.png', '../resources/co.png',
-    '../resources/sb.png', '../resources/so.png',
-    '../resources/tb.png', '../resources/to.png'
+    CARD_URLS['cb'],
+    CARD_URLS['co'],
+    CARD_URLS['sb'],
+    CARD_URLS['so'],
+    CARD_URLS['tb'],
+    CARD_URLS['to']
 ];
-const back = '../resources/back.png';
+const back = CARD_URLS['back'];
+
 export var items = [];
 
 var game = {
