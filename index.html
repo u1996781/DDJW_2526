@@ -1,15 +1,51 @@
-<!DOCTYPE html> 
-<html>
-	<head>
-		<script type="module" src="./js/main.js"></script>
-		<link rel="stylesheet" href="./styles/main.css">
-		<title> Memory - Menú </title>
-	</head>
-	<body>
-		<h1 id="title">Menú</h1>
-		<button id="play" class="center btn-verd"> Jugar </button>
-		<button id="options" class="center btn-blau"> Opcions </button>
-		<button id="saves" class="center btn-groc"> Partides </button>
-		<button id="exit" class="center btn-vermell"> Sortir </button>
-	</body>
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <script type="module" src="./js/main.js"></script>
+    <link rel="stylesheet" href="./styles/main.css">
+    <title>Memory - Menú</title>
+</head>
+<body>
+    <h1 id="title">Menú</h1>
+    <div id="main-buttons">
+        <button id="play" class="center btn-verd">Jugar</button>
+        <button id="options" class="center btn-blau">Opcions</button>
+        <button id="saves" class="center btn-groc">Partides</button>
+        <button id="exit" class="center btn-vermell">Sortir</button>
+    </div>
+    <div id="menu-config" style="display: none; text-align: center; color: white; margin-top: 2rem;">
+        <h2 style="margin-bottom: 1.5rem;">Configuració de la Partida</h2>
+        <div style="margin-bottom: 1rem;">
+            <label>Àlies: <input type="text" id="alias" value="Jugador 1" style="padding: 8px; border-radius: 5px; border: none; width: 150px;"></label>
+        </div>
+        <div style="margin-bottom: 1rem;">
+            <label>Cartes úniques:
+                <select id="num-cards" style="padding: 8px; border-radius: 5px;">
+                    <option value="4">4 (Fàcil)</option>
+                    <option value="6" selected>6 (Normal)</option>
+                </select>
+            </label>
+        </div>
+        <div style="margin-bottom: 1rem;">
+            <label>Mida del grup:
+                <select id="group-size" style="padding: 8px; border-radius: 5px;">
+                    <option value="2" selected>Parelles (2)</option>
+                    <option value="3">Trios (3)</option>
+                    <option value="4">Quartets (4)</option>
+                </select>
+            </label>
+        </div>
+        <div style="margin-bottom: 2rem;">
+            <label>Dificultat:
+                <select id="difficulty" style="padding: 8px; border-radius: 5px;">
+                    <option value="10">Fàcil (-10 pts)</option>
+                    <option value="25" selected>Normal (-25 pts)</option>
+                    <option value="50">Difícil (-50 pts)</option>
+                </select>
+            </label>
+        </div>
+        <button id="start-game" class="center btn-verd">Començar Partida!</button>
+    </div>
+</body>
 </html>

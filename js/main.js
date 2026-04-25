@@ -1,21 +1,25 @@
 import { $ } from '../library/jquery-4.0.0.slim.module.min.js';
-
 $(function() {
     $('#play').on('click', function() {
-        let alies = prompt("Introdueix el teu àlies:");
-        console.log(alies);
+        $('#main-buttons').hide();
+        $('#menu-config').show();
+    });
+    $('#start-game').on('click', function() {
+        const config = {
+            alias: $('#alias').val() || 'Jugador',
+            numCards: parseInt($('#num-cards').val()),
+            groupSize: parseInt($('#group-size').val()),
+            difficulty: parseInt($('#difficulty').val())
+        };
+        localStorage.setItem('memoryConfig', JSON.stringify(config));
         window.location.assign("./html/game.html");
     });
-
-    $('#options').on('click', function() {
-        console.error("Opció no implementada");
+    $('#options, #saves').on('click', function() {
+        alert("Opció no disponible en aquesta versió.");
     });
-
-    $('#saves').on('click', function() {
-        console.error("Opció no implementada");
-    });
-
     $('#exit').on('click', function() {
-        console.warn("No es pot sortir!");
+        if(confirm("Vols tancar el joc?")) {
+            window.close();
+        }
     });
 });

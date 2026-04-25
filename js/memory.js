@@ -1,87 +1,92 @@
 import { setValue, clickOn, clickOff } from './game.js';
 import { CARD_URLS } from './cards.js';
-
 const resources = [
-    CARD_URLS['cb'],
-    CARD_URLS['co'],
-    CARD_URLS['sb'],
-    CARD_URLS['so'],
-    CARD_URLS['tb'],
-    CARD_URLS['to']
+    CARD_URLS['cb'], CARD_URLS['co'],
+    CARD_URLS['sb'], CARD_URLS['so'],
+    CARD_URLS['tb'], CARD_URLS['to']
 ];
 const back = CARD_URLS['back'];
-
-export var items = [];
-
-var game = {
+export const items = [];
+export var game = {
     ready: 0,
-    lastCard: null,
+    flippedCards: [],
     score: 200,
-    pairs: 2
+    matchesLeft: 0,
+    groupSize: 2,
+    penalty: 25
 }
-
 function shuffe(arr){
-    arr.sort(function () {return Math.random() - 0.5});
+    arr.sort(() => Math.random() - 0.5);
 }
-
-export function selectCards(){
-    items = resources.slice();
-    shuffe(items);
-    items = items.slice(0, game.pairs);
-    items = items.concat(items);
-    shuffe(items);
+export function selectCards(numUniqueCards = 6, groupSize = 2, penalty = 25){
+    game.groupSize = groupSize;
+    game.matchesLeft = numUniqueCards;
+    game.penalty = penalty;
+    let tempItems = resources.slice();
+    shuffe(tempItems);
+    tempItems = tempItems.slice(0, numUniqueCards);
+    let deck = [];
+    for(let i = 0; i < groupSize; i++) {
+        deck = deck.concat(tempItems);
+    }
+    shuffe(deck);
+    items.length = 0;
+    deck.forEach(c => items.push(c));
 }
-
 export function startGame(){
-    items.forEach(function(_,indx){
-        setTimeout(function(){
-            game.ready++;
-            goBack(indx);
-        }, 1000 + 100 * indx);
+    game.ready = 0;
+    game.flippedCards = [];
+    items.forEach((_, idx) => {
+        setValue(idx, items[idx]);
+        clickOff(idx);
     });
+    setTimeout(() => {
+        items.forEach((_, idx) => {
+            setTimeout(() => {
+                game.ready++;
+                setValue(idx, back);
+                clickOn(idx);
+            }, 100 * idx);
+        });
+    }, 100);
 }
-
 export function clickCard(indx){
-    if (game.ready < items.length) return;
-
-    goFront(indx);
-
-    if (game.lastCard === null) {
-        game.lastCard = indx;
-    } 
-    else {
-        if (items[game.lastCard] === items[indx]) {
-            game.pairs--;
-            if (game.pairs <= 0) {
-                alert(`Has guanyat amb ${game.score} punts!!!!`);
-                window.location.assign("../");
+    if (game.ready < items.length || game.flippedCards.includes(indx)) return;
+    setValue(indx, items[indx]);
+    clickOff(indx);
+    game.flippedCards.push(indx);
+    if (game.flippedCards.length === game.groupSize) {
+        const firstCardType = items[game.flippedCards[0]];
+        const allMatch = game.flippedCards.every(id => items[id] === firstCardType);
+        if (allMatch) {
+            game.matchesLeft--;
+            if (game.matchesLeft <= 0) {
+                setTimeout(() => {
+                    alert(`Victòria! Punts: ${game.score}`);
+                    window.location.assign("../");
+                }, 500);
             }
-            game.lastCard = null;
-        } 
+            game.flippedCards = [];
+        }
         else {
-            game.ready = 0; 
-            setTimeout(function() {
-                goBack(indx);
-                goBack(game.lastCard);
+            game.ready = 0;
+            setTimeout(() => {
+                game.flippedCards.forEach(id => {
+                    setValue(id, back);
+                    clickOn(id);
+                });
                 game.ready = items.length;
-                game.lastCard = null;
+                game.flippedCards = [];
             }, 1000);
-
-            game.score -= 25;
+            game.score -= game.penalty;
+            const scoreDisplay = document.getElementById('score-display');
+            if(scoreDisplay) scoreDisplay.innerText = `Punts: ${game.score}`;
             if (game.score <= 0) {
-                alert("Has perdut");
-                window.location.assign("../");
+                setTimeout(() => {
+                    alert("Has perdut!");
+                    window.location.assign("../");
+                }, 500);
             }
         }
     }
-}
-
-function goBack(idx){
-    setValue(idx, back);
-    clickOn(idx);
-}
-
-function goFront(idx){
-    setValue(idx, items[idx]);
-    clickOff(idx);
 }
