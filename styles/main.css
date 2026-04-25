@@ -81,3 +81,15 @@ button.center:hover {
               border-top-color 0.15s ease-in-out 0.15s,
               border-left-color 0.15s ease-in-out 0.3s;
 }
+
+#hud {
+  text-align: center;
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+#game {
+  display: block;
+  margin: 1rem auto;
+}
