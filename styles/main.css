@@ -26,30 +26,6 @@ body {
   letter-spacing: 2px;
 }
 
-#game {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 20px;
-}
-
-#game img {
-  width: 100px;
-  height: 140px;
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-  transition: transform 0.2s ease-in-out;
-}
-
-#game img:hover {
-  transform: scale(1.05);
-}
-
 button.btn-verd { --btn-color: var(--clr-verd); }
 button.btn-blau { --btn-color: var(--clr-blau); }
 button.btn-groc { --btn-color: var(--clr-groc); }
