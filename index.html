@@ -7,45 +7,129 @@
     <title>Memory - Menú</title>
 </head>
 <body>
-    <h1 id="title">Menú</h1>
-    <div id="main-buttons">
-        <button id="play" class="center btn-verd">Jugar</button>
-        <button id="options" class="center btn-blau">Opcions</button>
-        <button id="saves" class="center btn-groc">Partides</button>
-        <button id="exit" class="center btn-vermell">Sortir</button>
+
+<div id="screen-main">
+    <h1 id="title">Memory</h1>
+    <button id="btn-play"   class="center btn-verd">Jugar</button>
+    <button id="btn-scores" class="center btn-blau">Puntuacions</button>
+    <button id="btn-opts"   class="center btn-groc">Opcions</button>
+    <button id="btn-saves"  class="center btn-taronja">Carregar</button>
+    <button id="btn-exit"   class="center btn-vermell">Sortir</button>
+</div>
+
+<div id="screen-mode" class="screen hidden">
+    <h1 id="title">Tria el mode</h1>
+    <div class="form-box">
+        <label>Àlies:<input type="text" id="alias" value="Jugador" maxlength="16"></label>
     </div>
-    <div id="menu-config" style="display: none; text-align: center; color: white; margin-top: 2rem;">
-        <h2 style="margin-bottom: 1.5rem;">Configuració de la Partida</h2>
-        <div style="margin-bottom: 1rem;">
-            <label>Àlies: <input type="text" id="alias" value="Jugador 1" style="padding: 8px; border-radius: 5px; border: none; width: 150px;"></label>
-        </div>
-        <div style="margin-bottom: 1rem;">
-            <label>Cartes úniques:
-                <select id="num-cards" style="padding: 8px; border-radius: 5px;">
-                    <option value="4">4 (Fàcil)</option>
-                    <option value="6" selected>6 (Normal)</option>
-                </select>
-            </label>
-        </div>
-        <div style="margin-bottom: 1rem;">
-            <label>Mida del grup:
-                <select id="group-size" style="padding: 8px; border-radius: 5px;">
-                    <option value="2" selected>Parelles (2)</option>
-                    <option value="3">Trios (3)</option>
-                    <option value="4">Quartets (4)</option>
-                </select>
-            </label>
-        </div>
-        <div style="margin-bottom: 2rem;">
-            <label>Dificultat:
-                <select id="difficulty" style="padding: 8px; border-radius: 5px;">
-                    <option value="10">Fàcil (-10 pts)</option>
-                    <option value="25" selected>Normal (-25 pts)</option>
-                    <option value="50">Difícil (-50 pts)</option>
-                </select>
-            </label>
-        </div>
-        <button id="start-game" class="center btn-verd">Començar Partida!</button>
+    <button id="btn-mode1" class="center btn-verd">Mode 1 — Partida única</button>
+    <p class="hint">Tries les opcions i jugues un nivell</p>
+    <button id="btn-mode2" class="center btn-blau">Mode 2 — Progressiu</button>
+    <p class="hint">Cada nivell és més difícil. Acumula punts!</p>
+    <button id="btn-back-mode" class="center btn-vermell">Enrere</button>
+</div>
+
+<div id="screen-mode1" class="screen hidden">
+    <h1 id="title">Mode 1</h1>
+    <div class="form-box">
+        <label>Cartes úniques:
+            <select id="m1-cards">
+                <option value="4">4</option>
+                <option value="6" selected>6</option>
+                <option value="8">8</option>
+                <option value="10">10</option>
+            </select>
+        </label>
+        <label>Mida del grup:
+            <select id="m1-group">
+                <option value="2" selected>Parelles (2)</option>
+                <option value="3">Trios (3)</option>
+                <option value="4">Quartets (4)</option>
+            </select>
+        </label>
+        <label>Dificultat:
+            <select id="m1-diff">
+                <option value="10">Fàcil (−10 pts/error)</option>
+                <option value="25" selected>Normal (−25 pts/error)</option>
+                <option value="50">Difícil (−50 pts/error)</option>
+            </select>
+        </label>
     </div>
+    <button id="btn-start-mode1" class="center btn-verd">Començar!</button>
+    <button id="btn-back-mode1"  class="center btn-vermell">Enrere</button>
+</div>
+
+<div id="screen-mode2" class="screen hidden">
+    <h1 id="title">Mode 2</h1>
+    <div class="form-box">
+        <label>Nivell inicial:
+            <select id="m2-start">
+                <option value="1" selected>Nivell 1 — Molt fàcil</option>
+                <option value="3">Nivell 3 — Normal</option>
+                <option value="6">Nivell 6 — Difícil</option>
+                <option value="10">Nivell 10 — Expert</option>
+            </select>
+        </label>
+    </div>
+    <div class="info-box">
+        <p>La dificultat augmenta automàticament cada nivell:</p>
+        <p>↑ Cartes → ↑ Penalització → ↓ Temps → ↑ Mida grup</p>
+    </div>
+    <button id="btn-start-mode2" class="center btn-blau">Começar!</button>
+    <button id="btn-back-mode2"  class="center btn-vermell">Enrere</button>
+</div>
+
+<div id="screen-scores" class="screen hidden">
+    <h1 id="title">Puntuacions</h1>
+    <div id="ranking-list"></div>
+    <button id="btn-clear-scores" class="center btn-vermell">Esborrar rànquing</button>
+    <button id="btn-back-scores"  class="center btn-groc">Enrere</button>
+</div>
+
+<div id="screen-opts" class="screen hidden">
+    <h1 id="title">Opcions</h1>
+    <div class="form-box">
+        <label>Cartes per defecte (Mode 1):
+            <select id="opt-cards">
+                <option value="4">4</option>
+                <option value="6">6</option>
+                <option value="8">8</option>
+                <option value="10">10</option>
+            </select>
+        </label>
+        <label>Mida grup per defecte:
+            <select id="opt-group">
+                <option value="2">Parelles (2)</option>
+                <option value="3">Trios (3)</option>
+                <option value="4">Quartets (4)</option>
+            </select>
+        </label>
+        <label>Dificultat per defecte (Mode 1):
+            <select id="opt-diff">
+                <option value="10">Fàcil</option>
+                <option value="25">Normal</option>
+                <option value="50">Difícil</option>
+            </select>
+        </label>
+        <label>Nivell inicial Mode 2:
+            <select id="opt-m2start">
+                <option value="1">Nivell 1</option>
+                <option value="3">Nivell 3</option>
+                <option value="6">Nivell 6</option>
+                <option value="10">Nivell 10</option>
+            </select>
+        </label>
+    </div>
+    <button id="btn-save-opts"  class="center btn-verd">Desar opcions</button>
+    <button id="btn-back-opts"  class="center btn-groc">Enrere</button>
+</div>
+
+<div id="screen-saves" class="screen hidden">
+    <h1 id="title">Carregar partida</h1>
+    <div id="saves-list"></div>
+    <p id="no-saves" class="hint" style="display:none">No hi ha partides guardades.</p>
+    <button id="btn-back-saves" class="center btn-groc">Enrere</button>
+</div>
+
 </body>
 </html>
