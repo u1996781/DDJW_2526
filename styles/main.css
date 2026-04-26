@@ -69,7 +69,7 @@ button.center:hover {
   display: block;
   margin: 1rem auto;
 }
-/*Pantalles */
+/*  Pantalles  */
 .hidden { display: none; }
 .screen { display: block; }
 
@@ -79,7 +79,7 @@ button.center:hover {
     align-items: center;
 }
 
-/*Formularis de configuracio */
+/*  Formularis de configuració  */
 .form-box {
     display: flex;
     flex-direction: column;
@@ -114,10 +114,10 @@ button.center:hover {
     width: 100%;
 }
 
-/*Boto taronja*/
+/*  Botó taronja  */
 button.btn-taronja { --btn-color: #F7903A; }
 
-/* Hint text*/
+/*  Hint text  */
 .hint {
     color: #666688;
     font-size: 0.85rem;
@@ -125,7 +125,7 @@ button.btn-taronja { --btn-color: #F7903A; }
     margin: 0 0 0.5rem 0;
 }
 
-/* Info box (Mode 2) */
+/*  Info box (Mode 2)  */
 .info-box {
     background: #1e1e2e;
     border: 1px solid #3A7BF7;
@@ -140,7 +140,7 @@ button.btn-taronja { --btn-color: #F7903A; }
 
 .info-box p { margin: 0.3rem 0; }
 
-/*Taula ranking*/
+/*  Taula ranking  */
 .ranking-table {
     border-collapse: collapse;
     margin: 1rem auto;
@@ -163,7 +163,7 @@ button.btn-taronja { --btn-color: #F7903A; }
 .ranking-table tr:nth-child(3) td { color: #C0C0C0; }
 .ranking-table tr:nth-child(4) td { color: #CD7F32; }
 
-/*Fila partida guardad*/
+/*  Fila partida guardada  */
 .save-row {
     display: flex;
     align-items: center;
@@ -194,7 +194,7 @@ button.btn-taronja { --btn-color: #F7903A; }
     margin-top: 0;
 }
 
-/* Pantalla de joc: HUD  */
+/*  Pantalla de joc: HUD  */
 #hud {
     display: flex;
     justify-content: center;
@@ -202,4 +202,20 @@ button.btn-taronja { --btn-color: #F7903A; }
     color: white;
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
+}
+
+/*  Botons HUD del joc  */
+#hud button {
+    background: #2a2a2a;
+    color: white;
+    border: 1px solid #44445a;
+    border-radius: 8px;
+    padding: 4px 12px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+#hud button:hover {
+    border-color: #3A7BF7;
+    color: #3A7BF7;
 }

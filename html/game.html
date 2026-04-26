@@ -1,16 +1,25 @@
-<!DOCTYPE html> 
-<html>
-    <head>
-        <script src="../js/game.js" type="module"></script>
-        <link rel="stylesheet" href="../styles/main.css">
-        <title> Memory - Partida </title>
-    </head>
-    <body>
-        <h1 id="title">Partida</h1>
-        <div id="hud">
-            <span id="score-display">Punts: 200</span>
-        </div>
-        <canvas id="game"></canvas>
-    </body>
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/game.js" type="module"></script>
+    <link rel="stylesheet" href="../styles/main.css">
+    <title>Memory - Partida</title>
+</head>
+<body>
+    <h1 id="title">Partida</h1>
+    <div id="hud">
+        <span id="score-display">Punts: 200</span>
+        <span id="level-display"></span>
+        <button id="btn-save-game"> Guardar</button>
+        <button id="btn-quit-game"> Sortir</button>
+    </div>
+    <canvas id="game"></canvas>
+
+    <script type="module">
+        import { saveCurrentGame, quitGame } from '../js/memory.js';
+        document.getElementById('btn-save-game').addEventListener('click', saveCurrentGame);
+        document.getElementById('btn-quit-game').addEventListener('click', quitGame);
+    </script>
+</body>
 </html>
- 
