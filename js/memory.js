@@ -142,7 +142,6 @@ function saveToRanking(alias, score, level) {
     localStorage.setItem('memoryRanking', JSON.stringify(ranking.slice(0, 10)));
 }
 
-// FUNCIONS DELS BOTONS 
 export function saveCurrentGame() {
     const config = JSON.parse(localStorage.getItem('memoryConfig') || '{}');
     const saves = JSON.parse(localStorage.getItem('memorySaves') || '[]');

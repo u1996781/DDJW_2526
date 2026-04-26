@@ -57,6 +57,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 export function setValue(idx, src) {
+    if (!cards[idx]) return;
     cards[idx].isBack = (src === CARD_URLS['back']);
     if (cards[idx].isBack) { cards[idx].img = null; return; }
     const img = new Image();
@@ -64,8 +65,8 @@ export function setValue(idx, src) {
     img.src = src;
 }
 
-export function clickOn(idx) { cards[idx].clickable = true; }
-export function clickOff(idx) { cards[idx].clickable = false; }
+export function clickOn(idx) { if (cards[idx]) cards[idx].clickable = true; }
+export function clickOff(idx) { if (cards[idx]) cards[idx].clickable = false; }
 
 function drawAll() {
     if (!ctx) return;
