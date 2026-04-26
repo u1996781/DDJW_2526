@@ -17,6 +17,7 @@ function saveOpts(opts) {
 
 $(function() {
     const opts = loadOpts();
+    // Inicialització de valors als formularis
     $('#opt-cards').val(opts.cards);
     $('#opt-group').val(opts.group);
     $('#opt-diff').val(opts.diff);
@@ -26,6 +27,7 @@ $(function() {
     $('#m1-diff').val(opts.diff);
     $('#m2-start').val(opts.m2start);
 
+    // Esdeveniments de navegació
     $('#btn-play').on('click', function() { showScreen('screen-mode'); });
     $('#btn-scores').on('click', function() { renderRanking(); showScreen('screen-scores'); });
     $('#btn-opts').on('click', function() { showScreen('screen-opts'); });
@@ -40,6 +42,7 @@ $(function() {
     $('#btn-mode1').on('click', function() { showScreen('screen-mode1'); });
     $('#btn-mode2').on('click', function() { showScreen('screen-mode2'); });
 
+    // Lògica d'inici de partides
     $('#btn-start-mode1').on('click', function() {
         const config = { 
             mode: 1, 
@@ -63,6 +66,7 @@ $(function() {
         window.location.assign('./html/game.html');
     });
 
+    // Gestió de rànquing i opcions
     $('#btn-clear-scores').on('click', function() {
         if (confirm('Estàs segur que vols esborrar tot el rànquing?')) {
             localStorage.removeItem('memoryRanking');
@@ -130,13 +134,13 @@ function renderSaves() {
         $div.append($row);
     });
 
-    $('.btn-load').on('click', function() {
+    $('.btn-load').off('click').on('click', function() {
         const s = JSON.parse(localStorage.getItem('memorySaves'))[$(this).data('idx')];
         localStorage.setItem('memoryConfig', JSON.stringify(s));
         window.location.assign('./html/game.html');
     });
 
-    $('.btn-del').on('click', function() {
+    $('.btn-del').off('click').on('click', function() {
         const idx = $(this).data('idx');
         const savesList = JSON.parse(localStorage.getItem('memorySaves') || '[]');
         savesList.splice(idx, 1);
